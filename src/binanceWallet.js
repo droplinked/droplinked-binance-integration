@@ -21,14 +21,7 @@ export async function loginBinance(){
     return {
         "publicKey" : result.publicKey,
         "signature" : result.signature,
-        "address" : ""
+        "address" : await getCurrentBinanceAccount()
     };
 }
 
-export function publicKeyToAddress(publicKey) {
-    const sha256 = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(publicKey));
-    const ripemd160 = CryptoJS.RIPEMD160(sha256);
-    const words = CryptoJS.enc.Hex.parse(ripemd160.toString());
-    const checksum = CryptoJS.SHA256(CryptoJS.SHA256(words)).toString().substr(0, 8);
-    return "0x" + words.toString() + checksum;
-}

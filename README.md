@@ -27,6 +27,34 @@ The result would be something like this :
 ```
 `signature` is the signed message that will be shown to user on login, also `publicKey` is different from `address`, address is the address of account on binance chain whereas `publicKey` is the cryptographic key used to sign messages and some other stuff.
 
+
+### 1.1. Login to binance using metamask
+
+```js
+import { BinanceMetamaskLogin } from './src/binanceMetamask';
+try{
+    let account_information = await BinanceMetamaskLogin();
+    console.log(account_information);
+}catch(error){
+    console.error(error);
+    if (error == "Please install Metamask"){
+        // TODO: Show a popup to install Metamask
+    }
+}
+```
+
+The result would be something like this : 
+
+```json
+{
+    "address": "0x89281f2da10fb35c1cf90954e1b3036c3eb3cc78",
+    "network": "TestNet",
+    "publicKey": "b3zA9yF4oytcra7E7tLjmGbQ9i9JQ3M6uvrR/+QM5mk=",
+    "signature": "0x9ba56709ce42f8a022e6dd0fe81639e3a31da0017f922eb3ec355dcf579bb8380a85641d6b771473d26902c64b42411308dfab0837c121a3c29cdda705a4c2111c"
+}
+```
+
+
 ### 2. Binance Gating
 
 You can use the gating logic like this : 

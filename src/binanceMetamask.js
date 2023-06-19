@@ -54,11 +54,9 @@ export async function BinanceMetamaskLogin(){
     const siweMessage = `Please sign this message to let droplinked view your PublicKey & Address and validate your identity`;
     let msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
     const signature = await window.ethereum.request({ method: 'personal_sign', params: [msg,address]});
-    const publicKey = await window.ethereum.request({method : 'eth_getEncryptionPublicKey', params : [address]});
     return {
         address : address,
         network : Number(chainId) == 56 ? 'MainNet' : Number(chainId) == 97 ? 'TestNet' : 'Unknown',
-        publicKey : publicKey,
         signature : signature
     };
 }

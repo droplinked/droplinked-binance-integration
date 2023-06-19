@@ -19,7 +19,6 @@ export async function signBinance(message){
 export async function loginBinance(){
     let result = await window.BinanceChain.bnbSign(await getCurrentBinanceAccount(), "Please sign this message to let droplinked access to your PublicKey and validate your identity.");
     return {
-        "publicKey" : result.publicKey,
         "signature" : result.signature,
         "address" : await getCurrentBinanceAccount()
     };
